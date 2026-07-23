@@ -19,7 +19,7 @@ configs:
 
 # EGXO Egocentric Data Specification and Metadata Schema
 
-Version 1.0.2 is a machine-readable starting point for specifying egocentric robotics data before collection, annotation, or delivery begins.
+Version 1.0.3 is a machine-readable starting point for specifying egocentric robotics data before collection, annotation, or delivery begins.
 
 The package turns a model-facing requirement into explicit fields for episodes, RGB and IMU streams, synchronization, annotations, quality gates, rights, provenance, and release lineage. It is designed for robotics teams, ML engineers, data operations, and procurement teams that need a shared data contract.
 
@@ -32,6 +32,8 @@ Commercial context: [Egocentric Data for Robotics and Physical AI](https://egxod
 - [`schema/egxo-egocentric-episode.schema.json`](schema/egxo-egocentric-episode.schema.json): JSON Schema Draft 2020-12 episode contract
 - [`examples/example-episode.json`](examples/example-episode.json): a fully synthetic example record
 - [`data/example-episode.jsonl`](data/example-episode.jsonl): the same synthetic record in dataset-friendly JSONL
+- [`examples/real-public-preview-companion.json`](examples/real-public-preview-companion.json): measured metadata, annotations, QA, and rights boundaries for one real RGB-only public preview
+- [`docs/real-public-preview-companion.md`](docs/real-public-preview-companion.md): the companion record's evidence, modality, and licensing boundaries
 - [`docs/metadata-dictionary.md`](docs/metadata-dictionary.md): field definitions, units, null behavior, and producer guidance
 - [`docs/rgb-imu-synchronization.md`](docs/rgb-imu-synchronization.md): clocks, offsets, drift, interpolation, and validation
 - [`docs/qa-checklist.md`](docs/qa-checklist.md): automated, human-review, rights, and ingest acceptance gates
@@ -42,7 +44,7 @@ Commercial context: [Egocentric Data for Robotics and Physical AI](https://egxod
 
 ## Important scope boundary
 
-This repository contains a specification, documentation, and a synthetic example. It contains no captured participant media and is not an off-the-shelf training dataset.
+This repository contains a specification, documentation, a synthetic schema-complete example, and a real public-preview companion metadata record. It contains no captured participant media and is not an off-the-shelf training dataset.
 
 The CC BY 4.0 license applies to the contents of this repository. It does not grant rights to any EGXO media, client dataset, contributor recording, annotation corpus, or future dataset release. Collection consent, model-training permission, commercial use, redistribution, retention, and public display remain separate decisions for each dataset.
 

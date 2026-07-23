@@ -52,7 +52,7 @@
   "description": "A machine-readable specification for egocentric robotics data, including episode semantics, RGB and IMU synchronization, annotations, quality gates, rights, provenance, and release lineage.",
   "url": "https://egxodata.com/resources/egocentric-dataset-specification-template",
   "sameAs": "https://github.com/karlpresly/egxo-egocentric-data-specification",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "datePublished": "2026-07-23",
   "license": "https://creativecommons.org/licenses/by/4.0/",
   "creator": {
@@ -69,14 +69,14 @@
     "dataset metadata",
     "dataset provenance"
   ],
-  "citeAs": "EGXO Data (2026). EGXO Egocentric Data Specification and Metadata Schema, version 1.0.2.",
+  "citeAs": "EGXO Data (2026). EGXO Egocentric Data Specification and Metadata Schema, version 1.0.3.",
   "distribution": [
     {
       "@type": "cr:FileObject",
       "@id": "schema",
       "name": "episode_json_schema",
       "description": "JSON Schema Draft 2020-12 contract.",
-      "contentUrl": "https://raw.githubusercontent.com/karlpresly/egxo-egocentric-data-specification/v1.0.2/schema/egxo-egocentric-episode.schema.json",
+      "contentUrl": "https://raw.githubusercontent.com/karlpresly/egxo-egocentric-data-specification/v1.0.3/schema/egxo-egocentric-episode.schema.json",
       "encodingFormat": "application/schema+json",
       "sha256": "27a620662992193b51176f957e8ea98bce6c555a6afd8cb97565c481dfecec85"
     },
@@ -85,9 +85,18 @@
       "@id": "example-jsonl",
       "name": "synthetic_example_episode",
       "description": "One synthetic record with no captured participant media.",
-      "contentUrl": "https://raw.githubusercontent.com/karlpresly/egxo-egocentric-data-specification/v1.0.2/data/example-episode.jsonl",
+      "contentUrl": "https://raw.githubusercontent.com/karlpresly/egxo-egocentric-data-specification/v1.0.3/data/example-episode.jsonl",
       "encodingFormat": "application/jsonl",
       "sha256": "307cc7283280675d3cff00a5e1bee7b2455b20ea400dbb78e0caa915ed888608"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "real-public-preview-companion",
+      "name": "real_public_preview_companion",
+      "description": "Measured metadata, annotations, QA, and rights boundaries for one real RGB-only EGXO public preview. The media file is not included.",
+      "contentUrl": "https://raw.githubusercontent.com/karlpresly/egxo-egocentric-data-specification/v1.0.3/examples/real-public-preview-companion.json",
+      "encodingFormat": "application/json",
+      "sha256": "5b12afbd592576021bab6613f1fe70f0ef64c6aa7a98d9750592cc0a4ada0900"
     }
   ],
   "recordSet": [

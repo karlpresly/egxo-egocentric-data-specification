@@ -1,6 +1,6 @@
 {
   "title": "EGXO Egocentric Data Specification and Metadata Schema",
-  "description": "A versioned, machine-readable specification for egocentric robotics data, including episode semantics, RGB and IMU synchronization, annotations, quality gates, rights, provenance, and release lineage. This archive contains documentation and one synthetic example record. It contains no captured participant media and is not an off-the-shelf training dataset.",
+  "description": "A versioned, machine-readable specification for egocentric robotics data, including episode semantics, RGB and IMU synchronization, annotations, quality gates, rights, provenance, and release lineage. This archive contains documentation, one synthetic schema-complete example, and a measured companion metadata record for one real RGB-only public preview. It contains no captured participant media and is not an off-the-shelf training dataset.",
   "upload_type": "dataset",
   "creators": [
     {

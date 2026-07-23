@@ -4,7 +4,7 @@ title: "EGXO Egocentric Data Specification and Metadata Schema"
 type: dataset
 authors:
   - name: "EGXO Data"
-version: 1.0.2
+version: 1.0.3
 date-released: 2026-07-23
 license: CC-BY-4.0
 repository-code: "https://github.com/karlpresly/egxo-egocentric-data-specification"
@@ -12,7 +12,8 @@ url: "https://egxodata.com/resources/egocentric-dataset-specification-template"
 abstract: >-
   A versioned, machine-readable specification for egocentric robotics data,
   including episode semantics, RGB and IMU synchronization, annotations,
-  quality gates, rights, provenance, and release lineage.
+  quality gates, rights, provenance, release lineage, a synthetic schema
+  example, and a measured companion record for one real RGB-only public preview.
 keywords:
   - egocentric data
   - robotics training data

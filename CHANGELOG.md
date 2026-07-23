@@ -4,6 +4,21 @@ All notable changes to the EGXO Egocentric Data Specification are recorded here.
 
 The project follows [Semantic Versioning](https://semver.org/).
 
+## 1.0.3 - 2026-07-23
+
+Real public-preview evidence release.
+
+### Added
+
+- Byte-for-byte companion metadata record for the real EGXO dishwashing public preview
+- Measured media properties, checksums, reviewed temporal phases, QA states, and explicit rights limits
+- Documentation separating real RGB-only evidence from the schema-complete synthetic RGB and IMU example
+- Validation locks for the companion source checksum, media facts, annotations, and licensing boundaries
+
+### Scope
+
+The linked public-preview media is not included in the repository. Model training and redistribution require a separate written license.
+
 ## 1.0.2 - 2026-07-23
 
 Croissant interoperability release.

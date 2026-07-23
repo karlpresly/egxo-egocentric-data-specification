@@ -1,0 +1,79 @@
+{
+  "evidence_record_version": "1.0",
+  "record_generated": "2026-07-19",
+  "release": {
+    "id": "public-preview-2026-07-12",
+    "approval_date": "2026-07-12",
+    "scope": "Public website preview; project deliverables and licenses are configured separately"
+  },
+  "asset": {
+    "id": "dishwashing-object-cleaning",
+    "title": "Object Cleaning and Dishwashing",
+    "task_family": "Contact-rich household object cleaning",
+    "viewpoint": "egocentric",
+    "environment": "household kitchen sink",
+    "source_identity_fields": "removed"
+  },
+  "media": {
+    "video_path": "/samples/egxo-dishwashing-object-cleaning.mp4",
+    "poster_path": "/samples/egxo-dishwashing-object-cleaning.jpg",
+    "duration_seconds": 10.0,
+    "width": 960,
+    "height": 540,
+    "frame_rate_fps": 24,
+    "container": "MP4",
+    "codec": "H.264",
+    "pixel_format": "YUV420p",
+    "audio": "removed",
+    "video_bytes": 2117925,
+    "poster_bytes": 56904,
+    "video_sha256": "ce71a3740742875ea1fafce8e2629c9ab430a04294244a25191cde0788e99878",
+    "poster_sha256": "f7647cbcedeaef393277feefd032367d45b486d97996473f3479a84f7cc20cdd"
+  },
+  "annotations": {
+    "scope": "Reviewed temporal action phases for the public excerpt; not a complete training annotation set",
+    "temporal_segments": [
+      { "start": 0.0, "end": 2.3, "label": "Grasp and rotate the first vessel under running water" },
+      { "start": 2.3, "end": 5.2, "label": "Bimanual rinse and contact manipulation" },
+      { "start": 5.2, "end": 7.1, "label": "Release, reach, and transition to the second object" },
+      { "start": 7.1, "end": 10.0, "label": "Grasp, rotate, and inspect the plate" }
+    ]
+  },
+  "qa": [
+    {
+      "id": "technical-integrity",
+      "label": "Technical integrity",
+      "status": "passed",
+      "basis": "Complete 10-second H.264 decode at 960 × 540 and 24 FPS"
+    },
+    {
+      "id": "visual-selection",
+      "label": "Visual selection",
+      "status": "passed",
+      "basis": "Selected from 21 candidates across 11 task families after time-separated visual review"
+    },
+    {
+      "id": "media-sanitization",
+      "label": "Media sanitization",
+      "status": "passed",
+      "basis": "Excerpt trimmed, muted, stripped of source metadata, transcoded, and renamed"
+    },
+    {
+      "id": "publication-approval",
+      "label": "Public publication",
+      "status": "approved",
+      "basis": "Public marketing, buyer-distribution, legal, and privacy approval confirmed on 2026-07-12"
+    }
+  ],
+  "rights": {
+    "public_marketing": "approved",
+    "buyer_distribution_of_excerpt": "approved",
+    "model_training": "separate written license required",
+    "redistribution": "separate written license required"
+  },
+  "known_limitations": [
+    "The public excerpt contains RGB video only; no IMU, depth, gaze, or audio stream is published.",
+    "The temporal phases are illustrative reviewed events, not a complete training ontology or frame-level annotation release.",
+    "Public-preview approval does not grant model-training or redistribution rights."
+  ]
+}
