@@ -1,6 +1,6 @@
 {
   "name": "egxo-egocentric-data-specification",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "type": "module",
   "description": "Validation tooling for the EGXO Egocentric Data Specification and Metadata Schema.",

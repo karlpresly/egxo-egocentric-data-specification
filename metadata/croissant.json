@@ -2,16 +2,57 @@
   "@context": {
     "@language": "en",
     "@vocab": "https://schema.org/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
     "cr": "http://mlcommons.org/croissant/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
     "dct": "http://purl.org/dc/terms/",
-    "sc": "https://schema.org/"
+    "equivalentProperty": "cr:equivalentProperty",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "samplingRate": "cr:samplingRate",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform"
   },
   "@type": "sc:Dataset",
-  "name": "EGXO Egocentric Data Specification and Metadata Schema",
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "name": "egxo_egocentric_data_specification",
   "description": "A machine-readable specification for egocentric robotics data, including episode semantics, RGB and IMU synchronization, annotations, quality gates, rights, provenance, and release lineage.",
   "url": "https://egxodata.com/resources/egocentric-dataset-specification-template",
   "sameAs": "https://github.com/karlpresly/egxo-egocentric-data-specification",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "datePublished": "2026-07-23",
   "license": "https://creativecommons.org/licenses/by/4.0/",
   "creator": {
@@ -28,30 +69,32 @@
     "dataset metadata",
     "dataset provenance"
   ],
-  "citation": "EGXO Data (2026). EGXO Egocentric Data Specification and Metadata Schema, version 1.0.0.",
+  "citeAs": "EGXO Data (2026). EGXO Egocentric Data Specification and Metadata Schema, version 1.0.2.",
   "distribution": [
     {
       "@type": "cr:FileObject",
       "@id": "schema",
-      "name": "Episode JSON Schema",
+      "name": "episode_json_schema",
       "description": "JSON Schema Draft 2020-12 contract.",
-      "contentUrl": "schema/egxo-egocentric-episode.schema.json",
-      "encodingFormat": "application/schema+json"
+      "contentUrl": "https://raw.githubusercontent.com/karlpresly/egxo-egocentric-data-specification/v1.0.2/schema/egxo-egocentric-episode.schema.json",
+      "encodingFormat": "application/schema+json",
+      "sha256": "27a620662992193b51176f957e8ea98bce6c555a6afd8cb97565c481dfecec85"
     },
     {
       "@type": "cr:FileObject",
       "@id": "example-jsonl",
-      "name": "Synthetic example episode",
+      "name": "synthetic_example_episode",
       "description": "One synthetic record with no captured participant media.",
-      "contentUrl": "data/example-episode.jsonl",
-      "encodingFormat": "application/jsonl"
+      "contentUrl": "https://raw.githubusercontent.com/karlpresly/egxo-egocentric-data-specification/v1.0.2/data/example-episode.jsonl",
+      "encodingFormat": "application/jsonl",
+      "sha256": "307cc7283280675d3cff00a5e1bee7b2455b20ea400dbb78e0caa915ed888608"
     }
   ],
   "recordSet": [
     {
       "@type": "cr:RecordSet",
       "@id": "episode-records",
-      "name": "Egocentric episode records",
+      "name": "episode_records",
       "description": "Episode-level metadata records validated by the EGXO schema.",
       "field": [
         {

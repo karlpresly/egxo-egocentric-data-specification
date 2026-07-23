@@ -19,7 +19,7 @@ configs:
 
 # EGXO Egocentric Data Specification and Metadata Schema
 
-Version 1.0.1 is a machine-readable starting point for specifying egocentric robotics data before collection, annotation, or delivery begins.
+Version 1.0.2 is a machine-readable starting point for specifying egocentric robotics data before collection, annotation, or delivery begins.
 
 The package turns a model-facing requirement into explicit fields for episodes, RGB and IMU streams, synchronization, annotations, quality gates, rights, provenance, and release lineage. It is designed for robotics teams, ML engineers, data operations, and procurement teams that need a shared data contract.
 

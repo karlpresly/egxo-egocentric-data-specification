@@ -4,6 +4,14 @@ All notable changes to the EGXO Egocentric Data Specification are recorded here.
 
 The project follows [Semantic Versioning](https://semver.org/).
 
+## 1.0.2 - 2026-07-23
+
+Croissant interoperability release.
+
+### Fixed
+
+- Croissant 1.0 context, machine identifiers, version, and immutable distribution URLs now pass the official `mlcroissant` loader
+
 ## 1.0.1 - 2026-07-23
 
 Distribution metadata release.
