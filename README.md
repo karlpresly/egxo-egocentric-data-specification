@@ -1,6 +1,25 @@
+---
+license: cc-by-4.0
+pretty_name: EGXO Egocentric Data Specification and Metadata Schema
+language:
+  - en
+tags:
+  - robotics
+  - egocentric-data
+  - embodied-ai
+  - physical-ai
+  - imu
+  - dataset-metadata
+configs:
+  - config_name: default
+    data_files:
+      - split: reference
+        path: data/example-episode.jsonl
+---
+
 # EGXO Egocentric Data Specification and Metadata Schema
 
-Version 1.0.0 is a machine-readable starting point for specifying egocentric robotics data before collection, annotation, or delivery begins.
+Version 1.0.1 is a machine-readable starting point for specifying egocentric robotics data before collection, annotation, or delivery begins.
 
 The package turns a model-facing requirement into explicit fields for episodes, RGB and IMU streams, synchronization, annotations, quality gates, rights, provenance, and release lineage. It is designed for robotics teams, ML engineers, data operations, and procurement teams that need a shared data contract.
 
@@ -83,7 +102,7 @@ For a custom collection or data-pilot discussion, use the [EGXO project brief](h
 
 ## Citation
 
-Use the repository citation control or copy the metadata in [`CITATION.cff`](CITATION.cff). The archival DOI is listed in the citation file and the canonical guide.
+Use the repository citation control or copy the metadata in [`CITATION.cff`](CITATION.cff). A DOI will be added to the citation file and canonical guide after the first Zenodo archive is published.
 
 ## Contributing
 

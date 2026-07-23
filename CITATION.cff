@@ -4,7 +4,7 @@ title: "EGXO Egocentric Data Specification and Metadata Schema"
 type: dataset
 authors:
   - name: "EGXO Data"
-version: 1.0.0
+version: 1.0.1
 date-released: 2026-07-23
 license: CC-BY-4.0
 repository-code: "https://github.com/karlpresly/egxo-egocentric-data-specification"

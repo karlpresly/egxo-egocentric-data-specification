@@ -1,0 +1,33 @@
+{
+  "title": "EGXO Egocentric Data Specification and Metadata Schema",
+  "description": "A versioned, machine-readable specification for egocentric robotics data, including episode semantics, RGB and IMU synchronization, annotations, quality gates, rights, provenance, and release lineage. This archive contains documentation and one synthetic example record. It contains no captured participant media and is not an off-the-shelf training dataset.",
+  "upload_type": "dataset",
+  "creators": [
+    {
+      "name": "EGXO Data"
+    }
+  ],
+  "access_right": "open",
+  "license": "cc-by-4.0",
+  "keywords": [
+    "egocentric data",
+    "robotics training data",
+    "embodied AI",
+    "physical AI",
+    "RGB IMU synchronization",
+    "dataset metadata",
+    "dataset provenance"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://egxodata.com/resources/egocentric-dataset-specification-template",
+      "relation": "isDocumentedBy",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/karlpresly/egxo-egocentric-data-specification",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}

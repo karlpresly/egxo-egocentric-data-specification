@@ -4,6 +4,19 @@ All notable changes to the EGXO Egocentric Data Specification are recorded here.
 
 The project follows [Semantic Versioning](https://semver.org/).
 
+## 1.0.1 - 2026-07-23
+
+Distribution metadata release.
+
+### Added
+
+- Hugging Face dataset-card metadata and synthetic reference split
+- Zenodo deposition metadata for archival publication
+
+### Fixed
+
+- Citation guidance no longer states that a DOI exists before the Zenodo record is published
+
 ## 1.0.0 - 2026-07-23
 
 First public release.
