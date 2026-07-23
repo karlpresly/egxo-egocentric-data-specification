@@ -1,0 +1,120 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "cr": "http://mlcommons.org/croissant/",
+    "dct": "http://purl.org/dc/terms/",
+    "sc": "https://schema.org/"
+  },
+  "@type": "sc:Dataset",
+  "name": "EGXO Egocentric Data Specification and Metadata Schema",
+  "description": "A machine-readable specification for egocentric robotics data, including episode semantics, RGB and IMU synchronization, annotations, quality gates, rights, provenance, and release lineage.",
+  "url": "https://egxodata.com/resources/egocentric-dataset-specification-template",
+  "sameAs": "https://github.com/karlpresly/egxo-egocentric-data-specification",
+  "version": "1.0.0",
+  "datePublished": "2026-07-23",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "creator": {
+    "@type": "sc:Organization",
+    "name": "EGXO Data",
+    "url": "https://egxodata.com/"
+  },
+  "keywords": [
+    "egocentric data",
+    "robotics training data",
+    "physical AI",
+    "embodied AI",
+    "RGB IMU synchronization",
+    "dataset metadata",
+    "dataset provenance"
+  ],
+  "citation": "EGXO Data (2026). EGXO Egocentric Data Specification and Metadata Schema, version 1.0.0.",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "schema",
+      "name": "Episode JSON Schema",
+      "description": "JSON Schema Draft 2020-12 contract.",
+      "contentUrl": "schema/egxo-egocentric-episode.schema.json",
+      "encodingFormat": "application/schema+json"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "example-jsonl",
+      "name": "Synthetic example episode",
+      "description": "One synthetic record with no captured participant media.",
+      "contentUrl": "data/example-episode.jsonl",
+      "encodingFormat": "application/jsonl"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "episode-records",
+      "name": "Egocentric episode records",
+      "description": "Episode-level metadata records validated by the EGXO schema.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "episode-records/schema_version",
+          "name": "schema_version",
+          "description": "Semantic version of the episode schema.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "example-jsonl"
+            },
+            "extract": {
+              "jsonPath": "$.schema_version"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "episode-records/episode_id",
+          "name": "episode_id",
+          "description": "Stable episode identifier.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "example-jsonl"
+            },
+            "extract": {
+              "jsonPath": "$.episode.episode_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "episode-records/task_id",
+          "name": "task_id",
+          "description": "Stable task definition identifier.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "example-jsonl"
+            },
+            "extract": {
+              "jsonPath": "$.task.task_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "episode-records/acceptance_status",
+          "name": "acceptance_status",
+          "description": "Release disposition after QA and rights gates.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "example-jsonl"
+            },
+            "extract": {
+              "jsonPath": "$.quality.acceptance_status"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

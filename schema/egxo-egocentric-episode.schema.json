@@ -1,0 +1,1054 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egxodata.com/specifications/egocentric-data/v1.0.0/schema.json",
+  "title": "EGXO Egocentric Episode",
+  "description": "A machine-readable episode contract for egocentric robotics data, including synchronized RGB and IMU streams, annotations, quality, rights, and provenance.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "release",
+    "episode",
+    "task",
+    "capture",
+    "streams",
+    "synchronization",
+    "annotations",
+    "quality",
+    "rights",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0",
+      "description": "Semantic version of this episode schema."
+    },
+    "release": {
+      "$ref": "#/$defs/release"
+    },
+    "episode": {
+      "$ref": "#/$defs/episode"
+    },
+    "task": {
+      "$ref": "#/$defs/task"
+    },
+    "capture": {
+      "$ref": "#/$defs/capture"
+    },
+    "streams": {
+      "$ref": "#/$defs/streams"
+    },
+    "synchronization": {
+      "$ref": "#/$defs/synchronization"
+    },
+    "annotations": {
+      "$ref": "#/$defs/annotations"
+    },
+    "quality": {
+      "$ref": "#/$defs/quality"
+    },
+    "rights": {
+      "$ref": "#/$defs/rights"
+    },
+    "provenance": {
+      "$ref": "#/$defs/provenance"
+    }
+  },
+  "$defs": {
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "isoDateTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "release": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dataset_id",
+        "release_id",
+        "release_version",
+        "published_at",
+        "dataset_card_path",
+        "manifest_path"
+      ],
+      "properties": {
+        "dataset_id": {
+          "$ref": "#/$defs/nonEmptyString",
+          "description": "Stable identifier shared across releases of one dataset."
+        },
+        "release_id": {
+          "$ref": "#/$defs/nonEmptyString",
+          "description": "Unique identifier for this immutable delivery release."
+        },
+        "release_version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "published_at": {
+          "$ref": "#/$defs/isoDateTime"
+        },
+        "dataset_card_path": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "manifest_path": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "split": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "train",
+            "validation",
+            "test",
+            "holdout",
+            null
+          ]
+        }
+      }
+    },
+    "episode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "episode_id",
+        "session_id",
+        "take_id",
+        "started_at",
+        "ended_at",
+        "duration_ns",
+        "outcome",
+        "terminal_reason"
+      ],
+      "properties": {
+        "episode_id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "session_id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "take_id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "started_at": {
+          "$ref": "#/$defs/isoDateTime"
+        },
+        "ended_at": {
+          "$ref": "#/$defs/isoDateTime"
+        },
+        "duration_ns": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Episode duration in nanoseconds."
+        },
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "success",
+            "partial_success",
+            "failure",
+            "aborted"
+          ]
+        },
+        "terminal_reason": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "parent_episode_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "task": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "task_id",
+        "name",
+        "instruction",
+        "start_condition",
+        "terminal_condition",
+        "environment",
+        "objects",
+        "critical_actions"
+      ],
+      "properties": {
+        "task_id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "name": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "instruction": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "start_condition": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "terminal_condition": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "environment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "setting_type",
+            "workspace_id",
+            "lighting",
+            "clutter_level"
+          ],
+          "properties": {
+            "setting_type": {
+              "type": "string",
+              "enum": [
+                "home",
+                "workplace",
+                "laboratory",
+                "simulated",
+                "other"
+              ]
+            },
+            "workspace_id": {
+              "$ref": "#/$defs/nonEmptyString"
+            },
+            "lighting": {
+              "$ref": "#/$defs/nonEmptyString"
+            },
+            "clutter_level": {
+              "type": "string",
+              "enum": [
+                "low",
+                "moderate",
+                "high"
+              ]
+            }
+          }
+        },
+        "objects": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          }
+        },
+        "critical_actions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          }
+        }
+      }
+    },
+    "capture": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contributor_id",
+        "collection_protocol_version",
+        "capture_device_id",
+        "viewpoint",
+        "mount",
+        "site_id"
+      ],
+      "properties": {
+        "contributor_id": {
+          "$ref": "#/$defs/nonEmptyString",
+          "description": "Pseudonymous or otherwise minimized contributor identifier."
+        },
+        "collection_protocol_version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "capture_device_id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "viewpoint": {
+          "type": "string",
+          "enum": [
+            "egocentric",
+            "exocentric",
+            "synchronized_ego_exo"
+          ]
+        },
+        "mount": {
+          "type": "string",
+          "enum": [
+            "head",
+            "glasses",
+            "chest",
+            "shoulder",
+            "wrist",
+            "handheld",
+            "robot",
+            "fixed_external",
+            "other"
+          ]
+        },
+        "site_id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "locale": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Use only at the granularity permitted by privacy and project policy."
+        }
+      }
+    },
+    "fileReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256",
+        "byte_size"
+      ],
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "byte_size": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "rgbStream": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stream_id",
+        "file",
+        "codec",
+        "container",
+        "width_px",
+        "height_px",
+        "nominal_fps",
+        "frame_count",
+        "clock_id",
+        "timestamp_file",
+        "first_timestamp_ns",
+        "last_timestamp_ns",
+        "color_space"
+      ],
+      "properties": {
+        "stream_id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "file": {
+          "$ref": "#/$defs/fileReference"
+        },
+        "codec": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "container": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "width_px": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "height_px": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "nominal_fps": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "frame_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "clock_id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "timestamp_file": {
+          "$ref": "#/$defs/fileReference"
+        },
+        "first_timestamp_ns": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "last_timestamp_ns": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "color_space": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "camera_intrinsics_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "distortion_model": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "imuStream": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stream_id",
+        "file",
+        "format",
+        "nominal_sample_rate_hz",
+        "sample_count",
+        "clock_id",
+        "timestamp_field",
+        "timestamp_unit",
+        "accelerometer_fields",
+        "accelerometer_unit",
+        "gyroscope_fields",
+        "gyroscope_unit",
+        "coordinate_frame",
+        "calibration_version"
+      ],
+      "properties": {
+        "stream_id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "file": {
+          "$ref": "#/$defs/fileReference"
+        },
+        "format": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "nominal_sample_rate_hz": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "sample_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "clock_id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "timestamp_field": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "timestamp_unit": {
+          "type": "string",
+          "const": "nanosecond"
+        },
+        "accelerometer_fields": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "const": "accel_x"
+            },
+            {
+              "const": "accel_y"
+            },
+            {
+              "const": "accel_z"
+            }
+          ],
+          "items": false
+        },
+        "accelerometer_unit": {
+          "type": "string",
+          "const": "m/s^2"
+        },
+        "gyroscope_fields": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "const": "gyro_x"
+            },
+            {
+              "const": "gyro_y"
+            },
+            {
+              "const": "gyro_z"
+            }
+          ],
+          "items": false
+        },
+        "gyroscope_unit": {
+          "type": "string",
+          "const": "rad/s"
+        },
+        "magnetometer_fields": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "coordinate_frame": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "sensor_to_camera_transform_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "calibration_version": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "streams": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rgb",
+        "imu"
+      ],
+      "properties": {
+        "rgb": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/rgbStream"
+          }
+        },
+        "imu": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/imuStream"
+          }
+        },
+        "audio": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/fileReference"
+          }
+        },
+        "depth": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/fileReference"
+          }
+        }
+      }
+    },
+    "synchronization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reference_clock_id",
+        "timestamp_unit",
+        "rgb_clock_id",
+        "imu_clock_id",
+        "imu_to_rgb_offset_ns",
+        "estimated_drift_ppm",
+        "interpolation_policy",
+        "maximum_alignment_error_ms",
+        "validation_method",
+        "validation_result"
+      ],
+      "properties": {
+        "reference_clock_id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "timestamp_unit": {
+          "type": "string",
+          "const": "nanosecond"
+        },
+        "rgb_clock_id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "imu_clock_id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "imu_to_rgb_offset_ns": {
+          "type": "integer",
+          "description": "Signed offset applied to IMU timestamps to map them to the RGB reference clock."
+        },
+        "estimated_drift_ppm": {
+          "type": "number",
+          "description": "Estimated relative clock-rate error in parts per million."
+        },
+        "drift_correction_model": {
+          "type": "string",
+          "enum": [
+            "none",
+            "constant_offset",
+            "linear",
+            "piecewise_linear",
+            "other"
+          ]
+        },
+        "interpolation_policy": {
+          "type": "string",
+          "enum": [
+            "none",
+            "nearest",
+            "linear",
+            "spherical_linear"
+          ]
+        },
+        "maximum_alignment_error_ms": {
+          "type": "number",
+          "minimum": 0
+        },
+        "missing_sample_policy": {
+          "type": "string",
+          "enum": [
+            "reject_episode",
+            "mark_gap",
+            "interpolate_with_limit",
+            "other"
+          ]
+        },
+        "validation_method": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "validation_result": {
+          "type": "string",
+          "enum": [
+            "pass",
+            "fail",
+            "not_evaluated"
+          ]
+        }
+      }
+    },
+    "annotations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "specification_version",
+        "ontology_version",
+        "segments"
+      ],
+      "properties": {
+        "specification_version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "ontology_version": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "segments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "segment_id",
+              "label",
+              "start_ns",
+              "end_ns",
+              "confidence",
+              "review_status"
+            ],
+            "properties": {
+              "segment_id": {
+                "$ref": "#/$defs/nonEmptyString"
+              },
+              "label": {
+                "$ref": "#/$defs/nonEmptyString"
+              },
+              "start_ns": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "end_ns": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "confidence": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "review_status": {
+                "type": "string",
+                "enum": [
+                  "unreviewed",
+                  "accepted",
+                  "rejected",
+                  "adjudicated"
+                ]
+              }
+            }
+          }
+        },
+        "hand_object_events_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "pose_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "language_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "qualityCheck": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "check_id",
+        "category",
+        "result",
+        "measured_value",
+        "threshold",
+        "policy_version"
+      ],
+      "properties": {
+        "check_id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "media",
+            "metadata",
+            "synchronization",
+            "visibility",
+            "privacy",
+            "annotation",
+            "rights",
+            "ingest"
+          ]
+        },
+        "result": {
+          "type": "string",
+          "enum": [
+            "pass",
+            "fail",
+            "warning",
+            "not_applicable"
+          ]
+        },
+        "measured_value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "threshold": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "policy_version": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "automated_checks",
+        "manual_review",
+        "critical_action_visibility_rate",
+        "acceptance_status",
+        "rejection_reasons"
+      ],
+      "properties": {
+        "automated_checks": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/qualityCheck"
+          }
+        },
+        "manual_review": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "reviewer_id",
+            "reviewed_at",
+            "result"
+          ],
+          "properties": {
+            "reviewer_id": {
+              "$ref": "#/$defs/nonEmptyString"
+            },
+            "reviewed_at": {
+              "$ref": "#/$defs/isoDateTime"
+            },
+            "result": {
+              "type": "string",
+              "enum": [
+                "pass",
+                "fail",
+                "needs_rework"
+              ]
+            }
+          }
+        },
+        "critical_action_visibility_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "acceptance_status": {
+          "type": "string",
+          "enum": [
+            "accepted",
+            "rejected",
+            "quarantined",
+            "needs_rework"
+          ]
+        },
+        "rejection_reasons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "rights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rights_record_id",
+        "consent_or_legal_basis",
+        "media_license",
+        "metadata_license",
+        "model_training_permission",
+        "commercial_use_permission",
+        "redistribution_permission",
+        "derived_model_permission",
+        "retention_policy_id",
+        "privacy_review_status",
+        "release_eligibility"
+      ],
+      "properties": {
+        "rights_record_id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "consent_or_legal_basis": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "media_license": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "metadata_license": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "model_training_permission": {
+          "type": "string",
+          "enum": [
+            "permitted",
+            "prohibited",
+            "not_applicable",
+            "requires_separate_approval"
+          ]
+        },
+        "commercial_use_permission": {
+          "type": "string",
+          "enum": [
+            "permitted",
+            "prohibited",
+            "not_applicable",
+            "requires_separate_approval"
+          ]
+        },
+        "redistribution_permission": {
+          "type": "string",
+          "enum": [
+            "permitted",
+            "prohibited",
+            "not_applicable",
+            "requires_separate_approval"
+          ]
+        },
+        "derived_model_permission": {
+          "type": "string",
+          "enum": [
+            "permitted",
+            "prohibited",
+            "not_applicable",
+            "requires_separate_approval"
+          ]
+        },
+        "retention_policy_id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "privacy_review_status": {
+          "type": "string",
+          "enum": [
+            "pass",
+            "fail",
+            "not_applicable",
+            "pending"
+          ]
+        },
+        "redactions_applied": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "restrictions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "release_eligibility": {
+          "type": "string",
+          "enum": [
+            "eligible",
+            "ineligible",
+            "conditional",
+            "pending"
+          ]
+        }
+      }
+    },
+    "transformation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sequence",
+        "name",
+        "tool",
+        "tool_version",
+        "parameters",
+        "performed_at"
+      ],
+      "properties": {
+        "sequence": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "name": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "tool": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "tool_version": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "parameters": {
+          "type": "object"
+        },
+        "performed_at": {
+          "$ref": "#/$defs/isoDateTime"
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_session_id",
+        "collection_protocol_version",
+        "annotation_specification_version",
+        "qa_policy_version",
+        "transformations",
+        "record_created_at",
+        "record_updated_at",
+        "lineage_record_path"
+      ],
+      "properties": {
+        "source_session_id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "collection_protocol_version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "annotation_specification_version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "qa_policy_version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "transformations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/transformation"
+          }
+        },
+        "record_created_at": {
+          "$ref": "#/$defs/isoDateTime"
+        },
+        "record_updated_at": {
+          "$ref": "#/$defs/isoDateTime"
+        },
+        "lineage_record_path": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    }
+  }
+}
