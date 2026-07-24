@@ -7,7 +7,7 @@ authors:
 version: 1.0.3
 date-released: 2026-07-23
 license: CC-BY-4.0
-repository-code: "https://github.com/karlpresly/egxo-egocentric-data-specification"
+repository-code: "https://github.com/egxodata/egxo-egocentric-data-specification"
 url: "https://egxodata.com/resources/egocentric-dataset-specification-template"
 abstract: >-
   A versioned, machine-readable specification for egocentric robotics data,
